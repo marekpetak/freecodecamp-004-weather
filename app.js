@@ -5,24 +5,44 @@
     .module('App', [])
     .controller('AppController', ['$scope', 'DataService',
       function($scope, DataService) {
-        $scope.quote = {
-          text: 'empty text',
-          author: 'empty'
+        $scope.weather = {
+          location : {},
+          image: {}
         };
 
-        $scope.newQuote = function() {
-            DataService.getQuote(function(data, error) {
-              if(error){
-                console.log(error);
-              }
-              else {
-                $scope.quote = data;
-              }
-            });
+        $scope.currentLocation = {};
+
+        $scope.getWeather = function() {
+
+          if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(function(locationData) {
+
+                DataService.getWeather(locationData, function(data, error) {
+                  if(error){
+                    console.log(error);
+                  }
+                  else {
+                    $scope.weather = data;
+                  }
+                });
+              });
+          } else {
+              console.log("Geolocation is not supported by this browser.");
+          }
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(data) {
+                  $scope.currentLocation = data;
+                });
+            } else {
+                console.log("Geolocation is not supported by this browser.");
+            }
         }
 
         function init() {
-          $scope.newQuote();
+          $scope.getWeather();
         }
 
         init();
@@ -32,30 +52,34 @@
       function($http) {
         var _dataServiceFactory = {};
 
-        function _getQuote(callback) {
+        function _getWeather(locationData, callback) {
+
+          var url = 'https://simple-weather.p.mashape.com/weatherdata?lat=' + locationData.coords.latitude + '&lng=' + locationData.coords.longitude;
 
           $http({
             method: 'GET',
-            url: 'https://andruxnet-random-famous-quotes.p.mashape.com/?cat=',
+            url: url,
             headers: {
               'X-Mashape-Key': 'OpJyf5G4TEmshtcqkiM7ewzowsikp1dJvHcjsnRdYleSwddNKI',
               'Content-Type': 'application/x-www-form-urlencoded',
-              'Accept': 'application/json'
+              'Accept': 'application/plain'
             }
           }).then(function(data) {
 
+            var result = data.data.query.results.channel;
+
             if(callback) {
-              var quote = {
-                text: data.data.quote,
-                author: data.data.author
+              var wData = {
+                location: result.location,
+                image: result.image
               }
 
-              callback(quote);
+              callback(wData);
             }
           });
         }
 
-        _dataServiceFactory.getQuote = _getQuote;
+        _dataServiceFactory.getWeather = _getWeather;
 
         return _dataServiceFactory;
       }
