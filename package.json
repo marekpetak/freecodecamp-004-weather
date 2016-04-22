@@ -1,0 +1,14 @@
+{
+  "name": "weather",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "lite-server"
+  },
+  "author": "marek",
+  "license": "ISC",
+  "dependencies": {
+    "lite-server": "^2.2.0"
+  }
+}
