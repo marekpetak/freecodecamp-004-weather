@@ -71,7 +71,8 @@
             if(callback) {
               var wData = {
                 location: result.location,
-                image: result.image
+                image: result.image,
+                current: result.item.condition
               }
 
               callback(wData);

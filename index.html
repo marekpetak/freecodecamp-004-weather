@@ -6,7 +6,6 @@
      <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/paper/bootstrap.min.css" rel="stylesheet" />
 		 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet" />
      <link href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css" rel="stylesheet" />
-		 <link href='https://fonts.googleapis.com/css?family=Tulpen+One' rel='stylesheet' type='text/css'>
      <link href="style.css" rel="stylesheet" />
 
      <title>a quote thingy</title>
@@ -17,7 +16,9 @@
   <div class="container">
 		<div class="row">
       <div>
-				<img ng-src="{{weather.image.url}}" alt="weather image">
+				<p>Day: {{weather.current.date}}</p>
+				<p>Weather: {{weather.current.text}} </p>
+				<p>Temperature: {{weather.current.temp}}</p>
 			</div>
 		</div>
   </div>
