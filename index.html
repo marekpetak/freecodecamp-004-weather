@@ -14,10 +14,10 @@
 <body ng-controller="AppController">
 
   <div class="container">
-		<div class="row">
+		<div id="data-holder" class="row">
       <div class="col-sm-12 text-center">
 				<p id="today-is">Today is {{weather.current.date}}</p>
-				<p id="temp-text">Temperature: {{weather.current.temp}} <i class="wi {{unitsIcon}}" ng-click="changeUnits()"></i></p>
+				<p id="temp-text" ng-click="changeUnits()" title="click to change units ...">Temperature: {{weather.current.temp}} <i class="wi {{unitsIcon}}" ></i></p>
 				<p id="weather-icon"><i class="wi {{weather.icon}}" ng-show="weather.icon"></i></p>
 				<p id="weather-text">{{weather.current.text}} </p>
 			</div>

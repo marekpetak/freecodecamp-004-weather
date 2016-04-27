@@ -2,6 +2,10 @@ body {
   font-size: 16px !important;
 }
 
+#data-holder {
+  margin-top: 15%;
+}
+
 #today-is {
   font-size: 24px !important;
 }
