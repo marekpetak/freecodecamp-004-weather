@@ -15,10 +15,11 @@
 
   <div class="container">
 		<div class="row">
-      <div>
-				<p>Day: {{weather.current.date}}</p>
-				<p>Weather: {{weather.current.text}} </p>
-				<p>Temperature: {{weather.current.temp}}</p>
+      <div class="col-sm-12 text-center">
+				<p id="today-is">Today is {{weather.current.date}}</p>
+				<p id="temp-text">Temperature: {{weather.current.temp}} <i class="wi {{unitsIcon}}" ng-click="changeUnits()"></i></p>
+				<p id="weather-icon"><i class="wi {{weather.icon}}" ng-show="weather.icon"></i></p>
+				<p id="weather-text">{{weather.current.text}} </p>
 			</div>
 		</div>
   </div>

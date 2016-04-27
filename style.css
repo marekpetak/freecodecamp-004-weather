@@ -1,3 +1,19 @@
 body {
   font-size: 16px !important;
 }
+
+#today-is {
+  font-size: 24px !important;
+}
+
+#temp-text {
+  font-size: 24px !important;
+}
+
+#weather-icon {
+  font-size: 68px !important;
+}
+
+#weather-text {
+  font-size: 36px !important;
+}
